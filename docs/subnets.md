@@ -87,3 +87,43 @@ podem se comunicar diretamente com a Internet, mas podem acessar a Internet atra
   um NAT Gateway para acessar a Internet de forma indireta.
 - **Usos Comuns:** Bancos de dados, servidores de aplicações, e outros recursos que não precisam ser acessíveis diretamente da Internet.
 
+```hcl
+resource "aws_subnet" "eks_subnet_public_1a" {
+  vpc_id                  = aws_vpc.eks_vpc.id
+  cidr_block              = cidrsubnet(var.cidr_block, 8, 1)
+  availability_zone       = "${data.aws_region.current.name}a"
+  map_public_ip_on_launch = true
+
+  tags = merge(
+    local.tags,
+    {
+      Name                     = "${var.project_name}-pub-subnet-1a-tf",
+      "kubernetes.io/role/elb" = 1
+    }
+  )
+}
+
+resource "aws_subnet" "eks_subnet_public_1b" {
+  vpc_id                  = aws_vpc.eks_vpc.id
+  cidr_block              = cidrsubnet(var.cidr_block, 8, 2)
+  availability_zone       = "${data.aws_region.current.name}b"
+  map_public_ip_on_launch = true
+
+  tags = merge(
+    local.tags,
+    {
+      Name                     = "${var.project_name}-pub-subnet-1b-tf",
+      "kubernetes.io/role/elb" = 1
+    }
+  )
+}
+```
+
+1. **vpc_id:** Refere-se à VPC onde as subnets serão criadas. O ID da VPC é obtido do recurso aws_vpc.eks_vpc.
+2. **cidr_block:** Define o bloco CIDR para a subnet. O valor é calculado usando a função cidrsubnet, que gera subnets específicas a partir de um bloco CIDR maior definido em var.cidr_block. No caso:
+3. **cidrsubnet(var.cidr_block, 8, 1)** para a primeira subnet (1a)
+4. **cidrsubnet(var.cidr_block, 8, 2)** para a segunda subnet (1b) O segundo argumento 8 define o número de bits adicionais para subnetting, e o terceiro argumento define o número da subnet.
+5. **availability_zone:** Especifica a zona de disponibilidade onde a subnet será criada. Aqui, está sendo configurada dinamicamente usando a região atual, obtida através de um data block (provavelmente data "aws_region" "current"), seguido pela letra da zona, como us-east-1a e us-east-1b. 
+6. **map_public_ip_on_launch:** Configurado como true, significa que as instâncias lançadas nesta subnet receberão automaticamente um IP público.
+7. **tags:** Aplica tags à subnet, o que facilita a organização e identificação dos recursos. A tag Name segue o padrão ${var.project_name}-pub-subnet-1a-tf e ${var.project_name}-pub-subnet-1b-tf.
+8. **A tag kubernetes.io/role/elb** com valor 1 indica que essa subnet é adequada para uso com Load Balancers no Kubernetes, sendo configurada para ser descoberta e usada automaticamente por serviços que criam ELBs (Elastic Load Balancers).
