@@ -5,5 +5,5 @@ variable "cidr_block" {
 
 variable "project_name" {
   type        = string
-  description = "Project Name"
+  description = "Project Name to be used to name the resources (tags)"
 }
