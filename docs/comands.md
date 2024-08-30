@@ -131,3 +131,47 @@ Depois de `terraform fmt`:
     instance_type = "t2.micro" 
   }
 ```
+
+# validate
+
+O comando `terraform validate` é usado para verificar a sintaxe e a integridade dos arquivos de configuração do Terraform. Ele é uma etapa importante no processo de desenvolvimento, pois garante que o código esteja correto antes de ser aplicado.
+
+### Funções do `terraform validate`:
+
+1. **Verificação de Sintaxe**:
+
+    - **Confirma a Sintaxe**: Verifica se a sintaxe dos arquivos `.tf` está correta, ajudando a identificar erros de digitação, problemas de formatação e outros erros comuns.
+    - **Verifica a Coerência do Código**: Garante que o código está livre de erros que impediriam a execução bem-sucedida dos comandos `terraform plan` e `terraform apply`.
+2. **Verificação de Configurações**:
+
+    - **Configurações de Provedor**: Verifica se os provedores e suas configurações estão corretos.
+    - **Variáveis e Referências**: Confirma se as variáveis e referências a outros recursos estão corretamente definidas e usadas.
+3. **Verificação de Dependências**:
+
+    - **Módulos e Recursos**: Verifica se todos os módulos e recursos referenciados estão corretamente configurados e acessíveis.
+
+### Como Usar o `terraform validate`:
+
+- **Comando Básico**:
+    - No diretório onde estão localizados seus arquivos de configuração Terraform, execute:
+      ```bash
+      terraform validate
+      ```
+
+    - Este comando examina todos os arquivos `.tf` no diretório atual e verifica a validade da configuração.
+
+### Exemplos de Saída:
+
+- **Configuração Válida**:
+
+    - Se a configuração estiver correta, você verá uma saída indicando que a configuração é válida:
+      ```bash
+      Success! The configuration is valid.
+      ```
+
+- **Configuração Inválida**:
+
+    - Se houver erros na configuração, o comando exibirá mensagens de erro detalhadas indicando o que precisa ser corrigido:
+        ```bash
+        Error: Invalid resource type  on main.tf line 3, in resource "aws_instance" "example":  3: resource "aws_instace" "example" {
+        ```
