@@ -1,5 +1,7 @@
 O **Terraform State** é um dos conceitos fundamentais do Terraform, e é essencial para o gerenciamento de infraestrutura como código. Ele representa o estado atual da sua infraestrutura e serve como uma fonte de verdade que o Terraform utiliza para planejar e aplicar mudanças.
 
+- https://developer.hashicorp.com/terraform/language/settings/backends/remote
+
 ## O que é o Terraform State?
 
 O **Terraform State** é um arquivo que armazena informações sobre a infraestrutura gerenciada pelo Terraform. Esse arquivo é tipicamente chamado de `terraform.tfstate` e contém um mapeamento entre os recursos definidos no código Terraform e os recursos reais provisionados na nuvem ou em outro provedor.
@@ -33,7 +35,3 @@ O **Terraform State** é um arquivo que armazena informações sobre a infraestr
 - **Segurança**: O arquivo de estado pode conter informações sensíveis, como credenciais ou IDs de recursos. É importante proteger o estado adequadamente, especialmente em ambientes compartilhados.
 - **Bloqueios (Locks)**: Quando o estado é armazenado remotamente, muitos backends suportam o uso de bloqueios para evitar que múltiplas operações do Terraform modifiquem o estado simultaneamente, o que pode causar corrupção de dados.
 - **Migração de Estado**: Se você precisar mover o estado de um local para outro (por exemplo, de um arquivo local para um backend remoto), o Terraform fornece comandos como `terraform state pull`, `terraform state push`, e `terraform init` com as opções apropriadas.
-
-## Resumo
-
-O **Terraform State** é essencial para o funcionamento correto do Terraform. Ele mantém o registro da infraestrutura, permitindo que o Terraform rastreie recursos, planeje mudanças e aplique configurações de maneira eficiente e controlada. O gerenciamento adequado do estado é crucial, especialmente em ambientes de produção, para garantir que as operações do Terraform sejam seguras e confiáveis.
