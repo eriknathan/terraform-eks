@@ -83,5 +83,51 @@ Do you want to perform these actions?
   Only 'yes' will be accepted to approve.
 
   Enter a value: yes
+```
 
+# fmt
+
+O comando `terraform fmt` no Terraform é utilizado para formatar automaticamente os arquivos de configuração `.tf` de acordo com o estilo padrão do Terraform. Ele garante que o código esteja formatado de maneira consistente, tornando-o mais legível e facilitando a colaboração.
+
+## Principais Funções do `terraform fmt`:
+
+1. **Formatação Consistente**:
+    - Ajusta automaticamente a indentação, espaçamento, e outras regras de formatação para que o código siga um padrão uniforme.
+    - Isso é útil quando múltiplas pessoas trabalham no mesmo código, garantindo que a formatação seja consistente, independentemente de quem escreveu o código.
+2. **Melhoria na Legibilidade**:
+    - Um código bem formatado é mais fácil de entender e manter. O `terraform fmt` ajuda a melhorar a clareza do código ao garantir uma estrutura organizada.
+3. **Simplificação de Revisões de Código**:
+    - Em sistemas de controle de versão, como Git, a formatação inconsistente pode causar mudanças desnecessárias nos commits. Usar `terraform fmt` evita esses problemas, tornando as revisões de código mais focadas no conteúdo real.
+
+### Como Usar o `terraform fmt`:
+
+- **Formatar Todos os Arquivos no Diretório Atual**:
+    - No terminal, navegue até o diretório onde estão os arquivos Terraform e execute:
+      `terraform fmt`
+
+    - Isso formatará todos os arquivos `.tf` no diretório atual.
+  
+- **Formatar Recursivamente**:
+    - Para formatar arquivos `.tf` em todos os subdiretórios, use a opção `-recursive`:
+      `terraform fmt -recursive`
+
+- **Verificar Diferenças de Formatação**:
+    - Para visualizar as diferenças que serão aplicadas sem modificar os arquivos, use:
+      `terraform fmt -diff`
+
+### Exemplo de Uso:
+
+Antes de `terraform fmt`:
+
+```hcl
+ resource "aws_instance" "example" {ami = "ami-123456" instance_type= "t2.micro" }
+```
+
+Depois de `terraform fmt`:
+
+```hcl
+  resource "aws_instance" "example" {   
+    ami           = "ami-123456"
+    instance_type = "t2.micro" 
+  }
 ```

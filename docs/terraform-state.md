@@ -35,3 +35,15 @@ O **Terraform State** é um arquivo que armazena informações sobre a infraestr
 - **Segurança**: O arquivo de estado pode conter informações sensíveis, como credenciais ou IDs de recursos. É importante proteger o estado adequadamente, especialmente em ambientes compartilhados.
 - **Bloqueios (Locks)**: Quando o estado é armazenado remotamente, muitos backends suportam o uso de bloqueios para evitar que múltiplas operações do Terraform modifiquem o estado simultaneamente, o que pode causar corrupção de dados.
 - **Migração de Estado**: Se você precisar mover o estado de um local para outro (por exemplo, de um arquivo local para um backend remoto), o Terraform fornece comandos como `terraform state pull`, `terraform state push`, e `terraform init` com as opções apropriadas.
+
+## Utilizando o S3 como BackEnd Remote
+
+```hcl
+  backend "s3" {
+    bucket = "mybucket"
+    key    = "path/to/my/key"
+    region = "us-east-1"
+  }
+```
+
+Vou incluir isso dentro do provider mas poderia criar um arquivo backend.tf a parte para centralizar.
