@@ -11,7 +11,7 @@ No Terraform, um provider é um componente essencial que permite ao Terraform **
 ## AWS Provider
 - https://registry.terraform.io/browse/providers
 
-![alt text](imgs/provider.png)
+![alt text](../anexos/provider.png)
 
 Para instalar este provedor, copie e cole este código na configuração do Terraform. Em seguida, execute o terraform init.
 
@@ -38,7 +38,7 @@ Esse código Terraform é responsável por configurar o provider da AWS (Amazon 
 ## Documentação
 - https://registry.terraform.io/providers/hashicorp/aws/latest/docs
 
-![alt text](imgs/provider-docs.png)
+![alt text](../anexos/provider-docs.png)
 
 ## Inicialização do Projeto
 
