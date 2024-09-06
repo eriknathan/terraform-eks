@@ -15,5 +15,10 @@ variable "oidc" {
 
 variable "cluster_name" {
   type        = string
-  description = "Nome do Cluster EKS"
+  description = "EKS Cluster Name"
+}
+
+variable "vpcid" {
+  type        = string
+  description = "EKS Cluster Name"
 }
