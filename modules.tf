@@ -21,3 +21,9 @@ module "eks_managed_node_group" {
   subnet_private_1b = module.eks_network.subnet_priv_1b
   tags              = local.tags
 }
+
+module "eks_aws_load_balancer_controller" {
+  source       = "./modules/alb-controller"
+  project_name = var.project_name
+  tags         = local.tags
+}
